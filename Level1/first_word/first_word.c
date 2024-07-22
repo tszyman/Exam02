@@ -1,37 +1,24 @@
 #include <unistd.h>
 
-int	main(int argc,char *argv[])
+int	main(int argc, char *argv[])
 {
-	char	*c;
-	int		s;
+	char	*str;
 
-	c = argv[1];
-	if(argc == 2)
+	if (argc == 2)
 	{
-		s = 0;
-		while (*c != '\0')
+		str = argv[1];
+		while (*str == ' ' || *str == '\0')
+			if (*str == '\0')
+				break;
+			else
+				str++;
+		while (*str != ' ' && *str != '\0' && *str)
 		{
-			if (*c != ' ')
-			{
-				s = 1;
-			}
-			if (s == 1)
-			{
-				if (*c != ' ')
-				{
-					write(1, c, 1);
-				}
-				else
-				{
-					break;
-				}
-			}
-			c++;
+			write (1, str, 1);
+			str++;
 		}
 		write(1, "\n", 1);
 	}
 	else
-	{
 		write(1, "\n", 1);
-	}
 }
